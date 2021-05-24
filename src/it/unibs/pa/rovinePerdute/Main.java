@@ -20,7 +20,11 @@ import java.util.HashMap;
 public class Main {
     public static void main(String args[]) throws XMLStreamException {
 
-        System.out.println(InputXml2.leggiInputCitta());
+        for(Citta cit : InputXml2.leggiInputCitta()){
+
+            System.out.println(cit.toString());
+
+        }
 
 
     }

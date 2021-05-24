@@ -49,20 +49,20 @@ public class InputXml2 {
                     } else if (xmlr.getLocalName().equals("name")) {
                         xmlr.next();
                         cit.setNome(xmlr.getText());
-                    } else if (xmlr.getLocalName().equals("x")) {
+                    } else if (xmlr.getLocalName().equals("city")) {
                         xmlr.next();
                         cit.setCoordinataX(xmlr.getText());
-                    } else if (xmlr.getLocalName().equals("y")) {
+                    } else if (xmlr.getLocalName().equals("city")) {
                         xmlr.next();
                         cit.setCoordinataY(xmlr.getText());
                     } else if (xmlr.getLocalName().equals("h")) {
-                        xmlr.next();
+                       xmlr.next();
                         cit.setAltitudine(xmlr.getText());
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
-                        elenco_citta.add( cit);
+                        elenco_citta.add(cit);
                     }
                     break;
 

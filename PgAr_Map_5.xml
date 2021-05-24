@@ -4,7 +4,7 @@
 		<link to="1"/>
 		<link to="3"/>
 	</city>
-	<city id="1" name="Tikal" x="1898" y="927" h="1336">
+	<city id = "1" name = "Tikal" x="1898" y="927" h="1336">
 		<link to="0"/>
 		<link to="2"/>
 		<link to="3"/>

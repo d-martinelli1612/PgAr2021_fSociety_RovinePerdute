@@ -2,7 +2,7 @@ package it.unibs.pa.rovinePerdute;
 
 public class Citta {
 
-    private String coordinataX;
+    private String coordinataX ;
     private String coordinataY;
     private String altitudine;
     private String nome;
@@ -18,6 +18,11 @@ public class Citta {
 
     public Citta(int id) {
         this.id = id;
+        this.coordinataX = null;
+        this.coordinataY = null;
+        this.altitudine = null;
+        this.nome = null;
+
     }
 
     public String getCoordinataX() {
@@ -59,54 +64,15 @@ public class Citta {
     public void setId(int id) {
         this.id = id;
     }
-/*
-    private double coordinataX;
-    private double coordinataY;
-    private double altitudine;
-    private String nome;
-    private int id;
 
-    public Citta(int id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "Citta{" +
+                "coordinataX='" + coordinataX + '\'' +
+                ", coordinataY='" + coordinataY + '\'' +
+                ", altitudine='" + altitudine + '\'' +
+                ", nome='" + nome + '\'' +
+                ", id=" + id +
+                '}';
     }
-
-    public double getCoordinataX() {
-        return coordinataX;
-    }
-
-    public void setCoordinataX(double coordinataX) {
-        this.coordinataX = coordinataX;
-    }
-
-    public double getCoordinataY() {
-        return coordinataY;
-    }
-
-    public void setCoordinataY(double coordinataY) {
-        this.coordinataY = coordinataY;
-    }
-
-    public double getAltitudine() {
-        return altitudine;
-    }
-
-    public void setAltitudine(double altitudine) {
-        this.altitudine = altitudine;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }*/
 }
