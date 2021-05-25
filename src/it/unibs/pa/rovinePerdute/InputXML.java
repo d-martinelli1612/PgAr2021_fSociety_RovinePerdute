@@ -41,6 +41,7 @@ public class InputXML {
                 case XMLStreamConstants.START_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
                         cit = new Citta();
+                        /*Legge gli attributi della citta'*/
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("name")) {
                                 cit.setNome(xmlr.getAttributeValue(i));
@@ -67,6 +68,7 @@ public class InputXML {
                             }
                         }
                     }
+                    /*Legge le destinazioni che si possono raggiungere da una citta'*/
                     else if (xmlr.getLocalName().equals("link")) {
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("to")){
@@ -76,6 +78,7 @@ public class InputXML {
                         }
                     }
                     break;
+
                 case XMLStreamConstants.END_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
                         elenco_citta.add(cit);
@@ -87,7 +90,6 @@ public class InputXML {
             }
             xmlr.next();
         }
-
         return elenco_citta;
     }
 
