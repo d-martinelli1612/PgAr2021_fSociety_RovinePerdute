@@ -1,14 +1,17 @@
 package it.unibs.pa.rovinePerdute;
 
+import java.util.ArrayList;
+
 public class Citta {
 
-    private String coordinataX ;
-    private String coordinataY;
-    private String altitudine;
+    private int coordinataX ;
+    private int coordinataY;
+    private int altitudine;
     private String nome;
     private int id;
+    private ArrayList<Integer> linkTo = new ArrayList<>();
 
-    public Citta(String coordinataX, String coordinataY, String altitudine, String nome, int id) {
+    public Citta(int coordinataX, int coordinataY, int altitudine, String nome, int id) {
         this.coordinataX = coordinataX;
         this.coordinataY = coordinataY;
         this.altitudine = altitudine;
@@ -16,36 +19,29 @@ public class Citta {
         this.id = id;
     }
 
-    public Citta(int id) {
-        this.id = id;
-        this.coordinataX = null;
-        this.coordinataY = null;
-        this.altitudine = null;
-        this.nome = null;
+    public Citta() { }
 
-    }
-
-    public String getCoordinataX() {
+    public int getCoordinataX() {
         return coordinataX;
     }
 
-    public void setCoordinataX(String coordinataX) {
+    public void setCoordinataX(int coordinataX) {
         this.coordinataX = coordinataX;
     }
 
-    public String getCoordinataY() {
+    public int getCoordinataY() {
         return coordinataY;
     }
 
-    public void setCoordinataY(String coordinataY) {
+    public void setCoordinataY(int coordinataY) {
         this.coordinataY = coordinataY;
     }
 
-    public String getAltitudine() {
+    public int getAltitudine() {
         return altitudine;
     }
 
-    public void setAltitudine(String altitudine) {
+    public void setAltitudine(int altitudine) {
         this.altitudine = altitudine;
     }
 
@@ -65,14 +61,24 @@ public class Citta {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Citta{" +
-                "coordinataX='" + coordinataX + '\'' +
-                ", coordinataY='" + coordinataY + '\'' +
-                ", altitudine='" + altitudine + '\'' +
-                ", nome='" + nome + '\'' +
-                ", id=" + id +
-                '}';
+    public ArrayList<Integer> getLinkTo() {
+        return linkTo;
+    }
+
+    public void setLinkTo(ArrayList<Integer> linkTo) {
+        this.linkTo = linkTo;
+    }
+
+    public void stampaCitta() {
+        System.out.println(this.getNome() +
+                " { ID: " + this.getId() +
+                "; coordinata x: " + this.getCoordinataX() +
+                "; coordinata y: " + this.getCoordinataY() +
+                "; altitudine: " + this.getAltitudine() + "; }");
+
+        System.out.print("Destinazioni { ");
+        for (int i=0; i<this.linkTo.size(); i++)
+            System.out.print(this.linkTo.get(i) + ";");
+        System.out.print("}\n");
     }
 }
