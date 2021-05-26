@@ -70,65 +70,59 @@ public  class Mappa {
         }
     }
 
-    public void creaAlbero(){
-
-        /**Questa parte del metodo corrisponde ai punti 1 e 2 delle slide: lezione_7.1 pagina 37*/
-        HashSet<Integer> idCittaDaVisitare = new HashSet();
-        HashMap<Integer, Nodo> listaNodi = new HashMap<>();
+    public void creaAlbero(int idNodoPartenza, int idNodoArrivo) {
+        ArrayList <Nodo> nodiDaVisitare = new ArrayList<Nodo>();
+        ArrayList <Nodo> nodiVisitati = new ArrayList<Nodo>();
         Nodo nodo = new Nodo();
 
-        for (int i=0; i < this.listaCitta.size(); i++) {
-            idCittaDaVisitare.add(i);
-            nodo.setIdNodo(i);
+        /**Inizializza la lista dei nodi da visitare*/
+        //Imposta il nodo di partenza
+        nodiDaVisitare.get(0).setIdNodo(idNodoPartenza);
+        nodiDaVisitare.get(0).setDistanza(0);
+        nodiDaVisitare.get(0).setPartenza(true);
 
-            //zero corrisponde all'ID del campo base
-            nodo.setIdNodoProvenienza(0);
-
-            //-1 corrisponde a distanza infinita o più correttamente non ancora indicata
-            nodo.setDistanza(-1);
-
-            //l'indice del nodo nell'HashMap e' anche il suo ID
-            listaNodi.put(nodo.getIdNodo(), nodo);
+        nodo.setIdNodoProvenienza(-1);
+        nodo.setDistanza(0);
+        nodo.setPartenza(false);
+        for (int i=0; i < this.listaCitta.size(); i++){
+            nodo.setIdNodo(this.listaCitta.get(i).getId());
+            nodiDaVisitare.add(nodo);
         }
 
+        int idNodoAttuale = idNodoPartenza;
+        int nodoCollegato, indiceNodo, distanza;
 
-        //Nodo di partenza
-        int idNodoAttuale = 0;
-        int nodo_meno_distante = 0;
-        int nodoCollegato, distanza, minor_distanza;
-        while (!idCittaDaVisitare.isEmpty()) {
-
-            /**Questa parte del metodo svolge il punto 3 delle slide: lezione_7.1 pagina 37*/
-            minor_distanza = 0;
-            //Seleziona il luogo/nodo a minore distanza tra quelli collegati all'origine
+        //Se viene trovato il percorso per il nodo di arrivo il ciclo viene fermato
+        while (idNodoAttuale != idNodoArrivo){
+            //Controlla quanti nodi sono collegati a quello attualmente in analisi
             for (int i=0; i < this.listaCitta.get(idNodoAttuale).getLinkTo().size(); i++){
-                //Seleziona un luogo/nodo collegato a quello di origine
                 nodoCollegato = this.listaCitta.get(idNodoAttuale).getLinkTo().get(i);
 
-                //Ottiene la distanza tra i due luoghi/nodi dalla matrice
-                distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
+                //Verifica che il nodo debba essere ancora controllato, altrimenti prosegue
+                if (nodiDaVisitare.contains(nodoCollegato)){
+                    indiceNodo = trovaIndiceNodo(nodoCollegato, nodiDaVisitare);
 
-                if (distanza < listaNodi.get(nodoCollegato).getDistanza() || listaNodi.get(nodoCollegato).getDistanza() == -1){
-                    listaNodi.get(nodoCollegato).setDistanza(distanza);
-                    listaNodi.get(nodoCollegato).setIdNodoProvenienza(idNodoAttuale);
-                }
+                    //Se la distanza non e' ancora stata impostata viene messa quella indicata nella tabella
+                    if (nodiDaVisitare.get(indiceNodo).getDistanza() == 0){
+                        //imposta la distanza del nodo dall'origine
+                        distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
+                        nodiDaVisitare.get(indiceNodo).setDistanza(distanza);
+                    }
+                    else if (){
 
-                if (distanza < minor_distanza || minor_distanza == 0){
-                    minor_distanza = distanza;
-                    nodo_meno_distante = nodoCollegato;
+                    }
                 }
             }
-
-            idCittaDaVisitare.remove(idNodoAttuale);
-
-            idNodoAttuale = nodo_meno_distante;
         }
+    }
 
-        //STAMPA listaNodi
-        for (int i=0; i < listaNodi.size(); i++)
-            System.out.println("Nodo: " + listaNodi.get(i).getIdNodo()
-                + "; Provenienza: " + listaNodi.get(i).getIdNodoProvenienza()
-                + "; Distanza: " + listaNodi.get(i).getDistanza() + ";");
-
+    //Restituisce l'indice del nodo cercato tra quelli della lista
+    private static int trovaIndiceNodo(int idNodoCercato, ArrayList <Nodo> nodiDaVisitare){
+        for (int i=0; i < nodiDaVisitare.size(); i++){
+            if (idNodoCercato == nodiDaVisitare.get(i).getIdNodo())
+                return i;
+        }
+        //Evento che non dovrebbe mai verificarsi
+        return 0;
     }
 }

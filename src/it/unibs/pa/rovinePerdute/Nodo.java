@@ -4,6 +4,7 @@ public class Nodo {
     private int idNodo;
     private int idNodoProvenienza;
     private int distanza;
+    private boolean partenza;
 
     public Nodo(int idNodo, int from, int costo) {
         this.idNodo = idNodo;
@@ -35,5 +36,13 @@ public class Nodo {
 
     public void setDistanza(int distanza) {
         this.distanza = distanza;
+    }
+
+    public boolean isPartenza() {
+        return partenza;
+    }
+
+    public void setPartenza(boolean partenza) {
+        this.partenza = partenza;
     }
 }
