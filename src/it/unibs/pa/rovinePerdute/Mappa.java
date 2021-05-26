@@ -108,7 +108,7 @@ public  class Mappa {
                         distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
                         nodiDaVisitare.get(indiceNodo).setDistanza(distanza);
                     }
-                    else if (){
+                    else /*if ()*/{
 
                     }
                 }
