@@ -1,27 +1,39 @@
 package it.unibs.pa.rovinePerdute;
 
 public class Nodo {
-    private int idProvenienza;
-    private int costo;
+    private int idNodo;
+    private int idNodoProvenienza;
+    private int distanza;
 
-    public Nodo(int from, int costo) {
-        this.idProvenienza = from;
-        this.costo = costo;
+    public Nodo(int idNodo, int from, int costo) {
+        this.idNodo = idNodo;
+        this.idNodoProvenienza = from;
+        this.distanza = costo;
     }
 
-    public int getIdProvenienza() {
-        return idProvenienza;
+    public Nodo() { }
+
+    public int getIdNodo() {
+        return idNodo;
     }
 
-    public int getCosto() {
-        return costo;
+    public void setIdNodo(int idNodo) {
+        this.idNodo = idNodo;
     }
 
-    public void setIdProvenienza(int idProvenienza) {
-        this.idProvenienza = idProvenienza;
+    public int getIdNodoProvenienza() {
+        return idNodoProvenienza;
     }
 
-    public void setCosto(int costo) {
-        this.costo = costo;
+    public int getDistanza() {
+        return distanza;
+    }
+
+    public void setIdNodoProvenienza(int idNodoProvenienza) {
+        this.idNodoProvenienza = idNodoProvenienza;
+    }
+
+    public void setDistanza(int distanza) {
+        this.distanza = distanza;
     }
 }

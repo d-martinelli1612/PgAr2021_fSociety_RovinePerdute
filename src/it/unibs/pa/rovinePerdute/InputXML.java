@@ -19,8 +19,8 @@ public class InputXML {
      * @throws XMLStreamException
      * @ArrayList
      */
-    public static ArrayList<Citta> leggiInputCitta() throws XMLStreamException {
-        ArrayList<Citta> elenco_citta = new ArrayList<Citta>();
+    public static HashMap<Integer, Citta> leggiInputCitta() throws XMLStreamException {
+        HashMap<Integer, Citta> elenco_citta = new HashMap<>();
 
         Citta cit = null;
         int id, x, y, h, linkTo;
@@ -81,7 +81,7 @@ public class InputXML {
 
                 case XMLStreamConstants.END_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
-                        elenco_citta.add(cit);
+                        elenco_citta.put(cit.getId(), cit);
                     }
                     break;
 

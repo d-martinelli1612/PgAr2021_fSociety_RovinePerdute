@@ -1,12 +1,14 @@
 package it.unibs.pa.rovinePerdute;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public  class Mappa {
     int matricePercorsi[][];
-    ArrayList<Citta> listaCitta;
+    HashMap<Integer, Citta> listaCitta;
 
-    public Mappa(ArrayList listaCitta) {
+    public Mappa(HashMap<Integer, Citta> listaCitta) {
         this.listaCitta = listaCitta;
         this.matricePercorsi = new int[listaCitta.size()][listaCitta.size()];
     }
@@ -31,8 +33,12 @@ public  class Mappa {
                 if (Sorgente.matricePercorsi[i][j] == 1) {
                     this.matricePercorsi[i][j] = (Math.abs(Sorgente.listaCitta.get(i).getAltitudine()
                             - Sorgente.listaCitta.get(j).getAltitudine()));
-                }else{
-                    this.matricePercorsi[i][j]= -1;
+                }
+                else if (i == j){
+                    this.matricePercorsi[i][j] = 0;
+                }
+                else{
+                    this.matricePercorsi[i][j] = -1;
                 }
             }
         }
@@ -52,9 +58,50 @@ public  class Mappa {
                             + Math.pow((indiceY - listaCitta.get(j).getCoordinataY()), 2));
                     this.matricePercorsi[i][j]= distanza;
 
-                }else{
+                }
+                else if (i == j){
+                    this.matricePercorsi[i][j] = 0;
+                }
+                else{
                     this.matricePercorsi[i][j]= -1;
                 }
+            }
+        }
+    }
+
+    public void creaAlbero(){
+
+        /**Questa parte del metodo corrisponde ai punti 1 e 2 delle slide: lezione_7.1 pagina 37*/
+        HashSet<Integer> idCittaDaVisitare = new HashSet();
+        HashSet<Nodo> listaNodi = new HashSet();
+        Nodo nodo = new Nodo();
+
+        for (int i=0; i < this.listaCitta.size(); i++) {
+            idCittaDaVisitare.add(i);
+            nodo.setIdNodo(i);
+            //zero corrisponde all'ID del campo base
+            nodo.setIdNodoProvenienza(0);
+            //-1 corrisponde a distanza infinita o più correttamente non ancora indicata
+            nodo.setDistanza(-1);
+            listaNodi.add(nodo);
+        }
+
+
+        //Nodo di partenza
+        int idNodoAttuale = 0;
+        int nodoCollegato, meno_distante, distanza, minor_distanza;
+        while (!idCittaDaVisitare.isEmpty()) {
+
+            /**Questa parte del metodo svolge il punto 3 delle slide: lezione_7.1 pagina 37*/
+            minor_distanza = 0;
+            //Seleziona il luogo/nodo a minore distanza tra quelli collegati all'origine
+            for (int i=0; i < this.listaCitta.get(idNodoAttuale).getLinkTo().size(); i++){
+                //Seleziona un luogo/nodo collegato a quello di origine
+                nodoCollegato = this.listaCitta.get(idNodoAttuale).getLinkTo().get(i);
+                //Ottiene la distanza tra i due luoghi/nodi dalla matrice
+                distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
+
+
             }
         }
     }
