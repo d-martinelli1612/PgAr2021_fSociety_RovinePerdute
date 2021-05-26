@@ -10,11 +10,11 @@ public class Main {
     public static void main(String args[]) throws XMLStreamException {
 
         ArrayList<Citta> listaCitta = InputXML.leggiInputCitta();
-        Algoritmo mappaSorgente = new Algoritmo(listaCitta);
-        Algoritmo mappaAltitudine = new Algoritmo(listaCitta);
-        Algoritmo mappaCartesiana = new Algoritmo(listaCitta);
+        Mappa mappaSorgente = new Mappa(listaCitta);
+        Mappa mappaAltitudine = new Mappa(listaCitta);
+        Mappa mappaCartesiana = new Mappa(listaCitta);
 
-        // Stampa lista citta
+        //Stampa lista citta
         /*for (int i=0; i<listaCitta.size(); i++){
             listaCitta.get(i).stampaCitta();
         }*/

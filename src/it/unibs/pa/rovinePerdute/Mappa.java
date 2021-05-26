@@ -1,13 +1,12 @@
 package it.unibs.pa.rovinePerdute;
 
 import java.util.ArrayList;
-import java.util.SortedMap;
 
-public  class  Algoritmo {
+public  class Mappa {
     int matricePercorsi[][];
     ArrayList<Citta> listaCitta;
 
-    public Algoritmo(ArrayList listaCitta) {
+    public Mappa(ArrayList listaCitta) {
         this.listaCitta = listaCitta;
         this.matricePercorsi = new int[listaCitta.size()][listaCitta.size()];
     }
@@ -25,7 +24,7 @@ public  class  Algoritmo {
 
 
     // matrice per trovare l'altitudine
-    public void percorsoAltitudine(Algoritmo Sorgente){
+    public void percorsoAltitudine(Mappa Sorgente){
 
         for (int i=0; i < Sorgente.listaCitta.size(); i++){
 
@@ -41,7 +40,7 @@ public  class  Algoritmo {
     }
 
 
-    public void percorsoPlanare(Algoritmo Sorgente){
+    public void percorsoPlanare(Mappa Sorgente){
         int distanza, indiceX, indiceY;
 
         for (int i=0; i < Sorgente.listaCitta.size(); i++){
