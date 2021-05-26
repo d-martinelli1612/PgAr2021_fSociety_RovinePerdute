@@ -19,6 +19,7 @@ public class Main {
             listaCitta.get(i).stampaCitta();
         }*/
 
+        //Crea la mappaSorgente, riportante i percorsi esistenti
         mappaSorgente.matriceDistanze();
 
         //Trova percorso altitudine

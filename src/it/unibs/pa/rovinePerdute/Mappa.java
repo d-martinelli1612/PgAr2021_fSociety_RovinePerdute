@@ -11,6 +11,7 @@ public  class Mappa {
         this.matricePercorsi = new int[listaCitta.size()][listaCitta.size()];
     }
 
+
     public void matriceDistanze() {
         //seleziona righe matrice ciascuna corrispondente a una localita'
         for (int i=0; i < this.listaCitta.size(); i++){
@@ -23,11 +24,9 @@ public  class Mappa {
     }
 
 
-    // matrice per trovare l'altitudine
+    //Crea la mappa per la squadra che considera solo l'altitudine
     public void percorsoAltitudine(Mappa Sorgente){
-
         for (int i=0; i < Sorgente.listaCitta.size(); i++){
-
             for (int j=0; j < Sorgente.listaCitta.size(); j++){
                 if (Sorgente.matricePercorsi[i][j] == 1) {
                     this.matricePercorsi[i][j] = (Math.abs(Sorgente.listaCitta.get(i).getAltitudine()
@@ -40,6 +39,7 @@ public  class Mappa {
     }
 
 
+    //Crea la mappa per la squadra che considera solo le distanze cartesiane
     public void percorsoPlanare(Mappa Sorgente){
         int distanza, indiceX, indiceY;
 
@@ -47,7 +47,6 @@ public  class Mappa {
             indiceX = Sorgente.listaCitta.get(i).getCoordinataX();
             indiceY = Sorgente.listaCitta.get(i).getCoordinataY();
             for (int j=0; j < Sorgente.listaCitta.size(); j++){
-
                 if (Sorgente.matricePercorsi[i][j] == 1) {
                     distanza = (int) Math.sqrt(Math.pow((indiceX - listaCitta.get(j).getCoordinataX()), 2)
                             + Math.pow((indiceY - listaCitta.get(j).getCoordinataY()), 2));
@@ -56,7 +55,6 @@ public  class Mappa {
                 }else{
                     this.matricePercorsi[i][j]= -1;
                 }
-
             }
         }
     }

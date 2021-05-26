@@ -2,7 +2,7 @@ package it.unibs.pa.rovinePerdute;
 
 import java.util.ArrayList;
 
-public class Citta {
+public class Citta{
 
     private int coordinataX ;
     private int coordinataY;
@@ -10,16 +10,19 @@ public class Citta {
     private String nome;
     private int id;
     private ArrayList<Integer> linkTo = new ArrayList<>();
+    private Nodo nodoCitta;
 
-    public Citta(int coordinataX, int coordinataY, int altitudine, String nome, int id) {
+    public Citta(int coordinataX, int coordinataY, int altitudine, String nome, int id, Nodo nodoCitta) {
         this.coordinataX = coordinataX;
         this.coordinataY = coordinataY;
         this.altitudine = altitudine;
         this.nome = nome;
         this.id = id;
+        this.nodoCitta = nodoCitta;
     }
 
-    public Citta() { }
+    public Citta() {
+    }
 
     public int getCoordinataX() {
         return coordinataX;
@@ -80,5 +83,13 @@ public class Citta {
         for (int i=0; i<this.linkTo.size(); i++)
             System.out.print(this.linkTo.get(i) + ";");
         System.out.print("}\n");
+    }
+
+    public Nodo getNodoCitta() {
+        return nodoCitta;
+    }
+
+    public void setNodoCitta(Nodo nodoCitta) {
+        this.nodoCitta = nodoCitta;
     }
 }
