@@ -6,13 +6,15 @@ public class Nodo {
     private int distanza;
     private boolean partenza;
 
-    public Nodo(int idNodo, int from, int costo) {
+    public Nodo(String nome ,int idNodo, int from, int costo) {
+
         this.idNodo = idNodo;
         this.idNodoProvenienza = from;
         this.distanza = costo;
     }
 
-    public Nodo() { }
+    public Nodo() {
+    }
 
     public int getIdNodo() {
         return idNodo;

@@ -73,7 +73,8 @@ public class InputXML {
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("to")){
                                 linkTo = Integer.parseInt(xmlr.getAttributeValue(i));
-                                cit.getLinkTo().add(linkTo);
+                               /* Archi arco = new Archi(linkTo);*/
+                                cit.addLinkTo(linkTo);
                             }
                         }
                     }

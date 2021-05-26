@@ -1,9 +1,9 @@
 package it.unibs.pa.rovinePerdute;
 
 import java.lang.reflect.Array;
+import java.util.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+
 
 public  class Mappa {
     int matricePercorsi[][];
@@ -70,12 +70,59 @@ public  class Mappa {
         }
     }
 
-    public void creaAlbero(int idNodoPartenza, int idNodoArrivo) {
+    public void percorsoCorto ( Citta prov){
+        prov.setDist(0);
+        PriorityQueue< Citta> priorityQueue = new PriorityQueue<>();
+        priorityQueue.add(prov);
+        prov.setVisited(true);
+
+        while (!priorityQueue.isEmpty()){
+            Citta nodoAttuale =  priorityQueue.poll();
+
+            /*
+            * ABBIAMO UN PROBLEMA GIANTESCO,
+            * NOI ABBIAMO UNA LISTA DI INERI CHE CI STA A INDICARE L' ARCO, QUESTO
+            *  NON VA BENE DOBBIAMO ANDARE A CREARE NELLA CITTA UNA LISTA DI ARCHI
+            * CHE CI PORTA A UTILIZZARE QUESTO FOREACH SUCCESSIOVO
+            *  E LINERO ASSSEGGNATO ANDRA A FINIRE NEL TARGA CITTA ( OVVERO LA CITTA
+            *  DOVE ARRIVA IL NOSTRO ARCO ) SENO NON FUNZIONERA MAI */
+
+
+            for ( Archi arco  : nodoAttuale.getLinkTo()){
+                Citta c = arco.getTargaCitta();
+                if ( !c.isVisited()){
+                    int newDistance = nodoAttuale.getDist() + arco.getPeso();
+                    if ( newDistance < c.getDist()) {
+                        priorityQueue.remove();
+                        c.setDist(newDistance);
+                        c.setCittaProvenienza(nodoAttuale);
+                        priorityQueue.add(c);
+                    }
+                }
+            }
+                nodoAttuale.setVisited(true);
+        }
+
+    }
+
+
+    public List<Citta> getShortest ( Citta cittaTarget){
+        List<Citta> percorso = new ArrayList<Citta>();
+        for(Citta vertex = cittaTarget; vertex!= null; vertex = vertex.getCittaProvenienza()){
+            percorso.add(vertex);
+        }
+        Collections.reverse(percorso);
+        return  percorso;
+    }
+
+
+
+   /* public void creaAlbero(int idNodoPartenza, int idNodoArrivo) {
         ArrayList <Nodo> nodiDaVisitare = new ArrayList<Nodo>();
         ArrayList <Nodo> nodiVisitati = new ArrayList<Nodo>();
         Nodo nodo = new Nodo();
 
-        /**Inizializza la lista dei nodi da visitare*/
+        *//**Inizializza la lista dei nodi da visitare*//*
         //Imposta il nodo di partenza
         nodiDaVisitare.get(0).setIdNodo(idNodoPartenza);
         nodiDaVisitare.get(0).setDistanza(0);
@@ -108,7 +155,7 @@ public  class Mappa {
                         distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
                         nodiDaVisitare.get(indiceNodo).setDistanza(distanza);
                     }
-                    else /*if ()*/{
+                    else *//*if ()*//*{
 
                     }
                 }
@@ -124,5 +171,5 @@ public  class Mappa {
         }
         //Evento che non dovrebbe mai verificarsi
         return 0;
-    }
+    }*/
 }
