@@ -1,5 +1,6 @@
 package it.unibs.pa.rovinePerdute;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -73,23 +74,28 @@ public  class Mappa {
 
         /**Questa parte del metodo corrisponde ai punti 1 e 2 delle slide: lezione_7.1 pagina 37*/
         HashSet<Integer> idCittaDaVisitare = new HashSet();
-        HashSet<Nodo> listaNodi = new HashSet();
+        HashMap<Integer, Nodo> listaNodi = new HashMap<>();
         Nodo nodo = new Nodo();
 
         for (int i=0; i < this.listaCitta.size(); i++) {
             idCittaDaVisitare.add(i);
             nodo.setIdNodo(i);
+
             //zero corrisponde all'ID del campo base
             nodo.setIdNodoProvenienza(0);
+
             //-1 corrisponde a distanza infinita o più correttamente non ancora indicata
             nodo.setDistanza(-1);
-            listaNodi.add(nodo);
+
+            //l'indice del nodo nell'HashMap e' anche il suo ID
+            listaNodi.put(nodo.getIdNodo(), nodo);
         }
 
 
         //Nodo di partenza
         int idNodoAttuale = 0;
-        int nodoCollegato, meno_distante, distanza, minor_distanza;
+        int nodo_meno_distante = 0;
+        int nodoCollegato, distanza, minor_distanza;
         while (!idCittaDaVisitare.isEmpty()) {
 
             /**Questa parte del metodo svolge il punto 3 delle slide: lezione_7.1 pagina 37*/
@@ -98,11 +104,31 @@ public  class Mappa {
             for (int i=0; i < this.listaCitta.get(idNodoAttuale).getLinkTo().size(); i++){
                 //Seleziona un luogo/nodo collegato a quello di origine
                 nodoCollegato = this.listaCitta.get(idNodoAttuale).getLinkTo().get(i);
+
                 //Ottiene la distanza tra i due luoghi/nodi dalla matrice
                 distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
 
+                if (distanza < listaNodi.get(nodoCollegato).getDistanza() || listaNodi.get(nodoCollegato).getDistanza() == -1){
+                    listaNodi.get(nodoCollegato).setDistanza(distanza);
+                    listaNodi.get(nodoCollegato).setIdNodoProvenienza(idNodoAttuale);
+                }
 
+                if (distanza < minor_distanza || minor_distanza == 0){
+                    minor_distanza = distanza;
+                    nodo_meno_distante = nodoCollegato;
+                }
             }
+
+            idCittaDaVisitare.remove(idNodoAttuale);
+
+            idNodoAttuale = nodo_meno_distante;
         }
+
+        //STAMPA listaNodi
+        for (int i=0; i < listaNodi.size(); i++)
+            System.out.println("Nodo: " + listaNodi.get(i).getIdNodo()
+                + "; Provenienza: " + listaNodi.get(i).getIdNodoProvenienza()
+                + "; Distanza: " + listaNodi.get(i).getDistanza() + ";");
+
     }
 }
