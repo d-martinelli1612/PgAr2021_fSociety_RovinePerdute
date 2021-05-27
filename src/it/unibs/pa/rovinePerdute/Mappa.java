@@ -71,7 +71,9 @@ public  class Mappa {
     }
 
     public void creaAlbero(int idNodoPartenza, int idNodoArrivo) {
+        //Nodi la cui distanza dal punto di partenza può sempre essere modificata
         ArrayList <Nodo> nodiDaVisitare = new ArrayList<Nodo>();
+        //Nodi la cui distanza è considerata definitiva
         ArrayList <Nodo> nodiVisitati = new ArrayList<Nodo>();
         Nodo nodo = new Nodo();
 
@@ -81,10 +83,11 @@ public  class Mappa {
         nodiDaVisitare.get(0).setDistanza(0);
         nodiDaVisitare.get(0).setPartenza(true);
 
-        nodo.setIdNodoProvenienza(-1);
+        //Inizialmente queste impostazioni sono valide per tutti i nodi eccetto quello di partenza
+        nodo.setIdNodoProvenienza(Integer.MAX_VALUE);
         nodo.setDistanza(0);
         nodo.setPartenza(false);
-        for (int i=0; i < this.listaCitta.size(); i++){
+        for (int i=1; i < this.listaCitta.size(); i++){
             nodo.setIdNodo(this.listaCitta.get(i).getId());
             nodiDaVisitare.add(nodo);
         }
@@ -92,25 +95,19 @@ public  class Mappa {
         int idNodoAttuale = idNodoPartenza;
         int nodoCollegato, indiceNodo, distanza;
 
-        //Se viene trovato il percorso per il nodo di arrivo il ciclo viene fermato
+        //Se idNodoAttuale corrisponde a idNodoArrivo significa che e' stato trovato il percorso piu' breve
         while (idNodoAttuale != idNodoArrivo){
+
             //Controlla quanti nodi sono collegati a quello attualmente in analisi
             for (int i=0; i < this.listaCitta.get(idNodoAttuale).getLinkTo().size(); i++){
                 nodoCollegato = this.listaCitta.get(idNodoAttuale).getLinkTo().get(i);
 
                 //Verifica che il nodo debba essere ancora controllato, altrimenti prosegue
                 if (nodiDaVisitare.contains(nodoCollegato)){
+
                     indiceNodo = trovaIndiceNodo(nodoCollegato, nodiDaVisitare);
 
-                    //Se la distanza non e' ancora stata impostata viene messa quella indicata nella tabella
-                    if (nodiDaVisitare.get(indiceNodo).getDistanza() == 0){
-                        //imposta la distanza del nodo dall'origine
-                        distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
-                        nodiDaVisitare.get(indiceNodo).setDistanza(distanza);
-                    }
-                    else /*if ()*/{
 
-                    }
                 }
             }
         }
@@ -123,6 +120,6 @@ public  class Mappa {
                 return i;
         }
         //Evento che non dovrebbe mai verificarsi
-        return 0;
+        return -1;
     }
 }
