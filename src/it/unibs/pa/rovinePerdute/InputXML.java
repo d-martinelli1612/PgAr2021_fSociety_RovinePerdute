@@ -46,24 +46,29 @@ public class InputXML {
 
                         //Legge gli attributi della citta'
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
+                            //Legge il nome della citta'
                             if (xmlr.getAttributeLocalName(i).equals("name")) {
                                 cit.setNome(xmlr.getAttributeValue(i));
                             }
+                            //Legge la posizione sull'asse X
                             else if (xmlr.getAttributeLocalName(i).equals("x")) {
                                 //Conversione della stringa in un intero
                                 x = Integer.parseInt(xmlr.getAttributeValue(i));
                                 cit.setCoordinataX(x);
                             }
+                            //Legge la posizione sull'asse Y
                             else if (xmlr.getAttributeLocalName(i).equals("y")) {
                                 //Conversione della stringa in un intero
                                 y = Integer.parseInt(xmlr.getAttributeValue(i));
                                 cit.setCoordinataY(y);
                             }
+                            //Legge l'altitudine
                             else if (xmlr.getAttributeLocalName(i).equals("h")) {
                                 //Conversione della stringa in un intero
                                 h = Integer.parseInt(xmlr.getAttributeValue(i));
                                 cit.setAltitudine(h);
                             }
+                            //Legge l'ID della citta'
                             else if (xmlr.getAttributeLocalName(i).equals("id")) {
                                 //Conversione della stringa in un intero
                                 id = Integer.parseInt(xmlr.getAttributeValue(i));
@@ -97,6 +102,7 @@ public class InputXML {
 
                 case XMLStreamConstants.END_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
+                        //Aggiunge la citta' all'elenco delle citta' esistente
                         elenco_citta.put(cit.getId(), cit);
                     }
                     break;
@@ -110,4 +116,3 @@ public class InputXML {
     }
 
 }
-//}

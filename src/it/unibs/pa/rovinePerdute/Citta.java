@@ -106,10 +106,6 @@ public class Citta implements Comparable<Citta>{
         this.visited = visited;
     }
 
-    public void addLinkTo (Archi arco){
-        this.cittaCollegate.add(arco);
-    }
-
     public void stampaCitta() {
         System.out.println(this.getNome() +
                 " { ID: " + this.getId() +

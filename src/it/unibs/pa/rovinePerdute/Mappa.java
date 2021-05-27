@@ -28,11 +28,16 @@ public  class Mappa {
 
     //Crea la mappa per la squadra che considera solo l'altitudine
     public void percorsoAltitudine(Mappa Sorgente){
+        int altezza;
         for (int i=0; i < Sorgente.listaCitta.size(); i++){
+            int indice =0;
             for (int j=0; j < Sorgente.listaCitta.size(); j++){
                 if (Sorgente.matricePercorsi[i][j] == 1) {
-                    this.matricePercorsi[i][j] = (Math.abs(Sorgente.listaCitta.get(i).getAltitudine()
+                     altezza = (Math.abs(Sorgente.listaCitta.get(i).getAltitudine()
                             - Sorgente.listaCitta.get(j).getAltitudine()));
+                    this.matricePercorsi[i][j]= altezza;
+                    this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(altezza);
+                    indice++;
                 }
                 else if (i == j){
                     this.matricePercorsi[i][j] = 0;
@@ -46,18 +51,22 @@ public  class Mappa {
 
 
     //Crea la mappa per la squadra che considera solo le distanze cartesiane
-    public void percorsoPlanare(Mappa Sorgente){
-        int distanza, indiceX, indiceY;
+    public void percorsoPlanare(Mappa sorgente){
+        int distanza =0, indiceX, indiceY;
 
-        for (int i=0; i < Sorgente.listaCitta.size(); i++){
-            indiceX = Sorgente.listaCitta.get(i).getCoordinataX();
-            indiceY = Sorgente.listaCitta.get(i).getCoordinataY();
-            for (int j=0; j < Sorgente.listaCitta.size(); j++){
-                if (Sorgente.matricePercorsi[i][j] == 1) {
+
+        for (int i=0; i < sorgente.listaCitta.size(); i++){
+            indiceX = sorgente.listaCitta.get(i).getCoordinataX();
+            indiceY = sorgente.listaCitta.get(i).getCoordinataY();
+            int indice = 0;
+            for (int j=0; j < sorgente.listaCitta.size(); j++){
+                if (sorgente.matricePercorsi[i][j] == 1) {
                     distanza = (int) Math.sqrt(Math.pow((indiceX - listaCitta.get(j).getCoordinataX()), 2)
                             + Math.pow((indiceY - listaCitta.get(j).getCoordinataY()), 2));
                     this.matricePercorsi[i][j]= distanza;
 
+                    this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(distanza);
+                    indice++;
                 }
                 else if (i == j){
                     this.matricePercorsi[i][j] = 0;
