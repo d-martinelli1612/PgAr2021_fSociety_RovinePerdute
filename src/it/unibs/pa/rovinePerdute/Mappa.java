@@ -114,7 +114,7 @@ public  class Mappa {
         return percorso;
     }
 
-
+    
 
    /* public void creaAlbero(int idNodoPartenza, int idNodoArrivo) {
         ArrayList <Nodo> nodiDaVisitare = new ArrayList<Nodo>();
@@ -155,7 +155,8 @@ public  class Mappa {
                         distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
                         nodiDaVisitare.get(indiceNodo).setDistanza(distanza);
                     }
-                    else *//*if ()*//*{
+                    else *//*if ()*/
+    /*{
 
                     }
                 }
