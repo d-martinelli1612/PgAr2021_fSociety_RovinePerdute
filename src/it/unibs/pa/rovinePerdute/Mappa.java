@@ -20,7 +20,7 @@ public  class Mappa {
             //Controlla quante destinazioni sono raggiungibili partendo dalla localita' selezionata
             for (int j = 0; j < this.listaCitta.get(i).getCittaCollegate().size(); j++){
                 //Imposta il percorso come "esistente" all'interno della matricePercorsi
-                this.matricePercorsi[i][this.listaCitta.get(i).getCittaCollegate().get(j)] = 1;
+                this.matricePercorsi[i][this.listaCitta.get(i).getCittaCollegate().get(j).getCittaArrivo().getId()] = 1;
             }
         }
     }
