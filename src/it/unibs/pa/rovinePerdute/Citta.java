@@ -10,7 +10,7 @@ public class Citta implements Comparable<Citta>{
     private int altitudine;
     private String nome;
     private int id;
-    private List<Archi> cittaCollegate ;
+    private List<Archi> cittaCollegate;
     private Citta cittaProvenienza;
     private int dist;
     private boolean visited;

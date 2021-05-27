@@ -83,12 +83,14 @@ public  class Mappa {
         PriorityQueue<Citta> priorityQueue = new PriorityQueue<>();
         priorityQueue.add(prov);
         prov.setVisited(true);
+        int idCercato;
 
         while (!priorityQueue.isEmpty()){
             Citta nodoAttuale =  priorityQueue.poll();
-
+            //trovaCitta(priorityQueue.size()-1,this.listaCitta );
             for ( Archi arco  : nodoAttuale.getCittaCollegate()){
-                Citta c = arco.getCittaArrivo();
+                idCercato = arco.getCittaArrivo().getId();
+                Citta c = trovaCitta(idCercato, this.listaCitta);
                 if ( !c.isVisited()){
                     int newDistance = nodoAttuale.getDist() + arco.getPeso();
                     if ( newDistance < c.getDist()) {
@@ -114,7 +116,10 @@ public  class Mappa {
         return percorso;
     }
 
-    
+    public static Citta trovaCitta(int idCitta, HashMap<Integer, Citta> listaCitta){
+        //Restituisce la citta' presente a quel determinato indice della listaCitta
+        return listaCitta.get(idCitta);
+    }
 
    /* public void creaAlbero(int idNodoPartenza, int idNodoArrivo) {
         ArrayList <Nodo> nodiDaVisitare = new ArrayList<Nodo>();

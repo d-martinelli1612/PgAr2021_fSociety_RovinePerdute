@@ -6,6 +6,7 @@ import javax.xml.stream.XMLStreamException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class Main {
@@ -30,7 +31,7 @@ public class Main {
         //Trova percorso distanza planare
         mappaCartesiana.percorsoPlanare(mappaSorgente);
 
-        //STAMPA
+        /*//STAMPA
         for (int i=0; i<mappaAltitudine.listaCitta.size(); i++){
             for (int j=0; j<mappaAltitudine.listaCitta.size(); j++){
                 System.out.print(String.format("|%5d|", mappaAltitudine.matricePercorsi[i][j]));
@@ -45,7 +46,7 @@ public class Main {
                 System.out.print(String.format("|%5d|", mappaCartesiana.matricePercorsi[i][j]));
             }
             System.out.println();
-        }
+        }*/
 
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
 
@@ -62,7 +63,10 @@ public class Main {
 
         }*/
 
-
-        System.out.println(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size()-1)));
+        List<Citta> citta = mappaCartesiana.getShortest(listaCitta.get(listaCitta.size()-1));
+        System.out.println("Percorso:");
+        for( Citta cit : citta){
+            System.out.println(cit.getNome());
+        }
     }
 }
