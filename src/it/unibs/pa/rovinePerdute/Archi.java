@@ -4,16 +4,18 @@ public class Archi {
     private int peso;
     private Citta cittaPartenza;
     private Citta cittaArrivo;
-    private String name;
+    private int codici;
 
-    public Archi(int peso, Citta cittaPartenza, Citta targaCitta, String name) {
+
+    public Archi(int peso, Citta cittaPartenza, Citta targaCitta) {
         this.peso = peso;
         this.cittaPartenza = cittaPartenza;
         this.cittaArrivo = targaCitta;
-        this.name = name;
     }
 
-    public Archi() {
+    public Archi(Citta cittaPartenza, int codici) {
+        this.cittaPartenza = cittaPartenza;
+        this.codici = codici;
     }
 
     public int getPeso() {
@@ -40,11 +42,7 @@ public class Archi {
         this.cittaArrivo = cittaArrivo;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
+
+
+

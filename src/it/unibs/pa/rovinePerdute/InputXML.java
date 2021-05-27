@@ -19,8 +19,8 @@ public class InputXML {
      * @throws XMLStreamException
      * @ArrayList
      */
-    public static HashMap<Integer, Citta> leggiInputCitta() throws XMLStreamException {
-        HashMap<Integer, Citta> elenco_citta = new HashMap<>();
+    public static   ArrayList<Citta> leggiInputCitta() throws XMLStreamException {
+        ArrayList elenco_citta = new ArrayList();
 
         Citta cit = null;
         Citta cittaCollegata = null;
@@ -81,16 +81,16 @@ public class InputXML {
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("to")){
                                 cittaCollegata = new Citta();
-                                arco = new Archi();
+
 
                                 //Conversione della stringa in un intero
                                 linkTo = Integer.parseInt(xmlr.getAttributeValue(i));
-
-                                //Imposta linkTo come iD della citta' di arrivo dell'arco
+                                arco = new Archi(cit , linkTo);
+                                /*//Imposta linkTo come iD della citta' di arrivo dell'arco
                                 cittaCollegata.setId(linkTo);
 
                                 //Imposta per l'arco la citta' di partenza
-                                arco.setCittaPartenza(cit);
+                                arco.setCittaPartenza(cit);*/
 
                                 //Imposta per l'arco la citta' di arrivo
                                 arco.setCittaArrivo(cittaCollegata);
@@ -103,7 +103,7 @@ public class InputXML {
                 case XMLStreamConstants.END_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
                         //Aggiunge la citta' all'elenco delle citta' esistente
-                        elenco_citta.put(cit.getId(), cit);
+                        elenco_citta.add(cit);
                     }
                     break;
 

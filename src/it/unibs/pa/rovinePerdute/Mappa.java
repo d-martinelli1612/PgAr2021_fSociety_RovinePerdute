@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public  class Mappa {
     int matricePercorsi[][];
-    HashMap<Integer, Citta> listaCitta;
+    ArrayList<Citta> listaCitta;
 
-    public Mappa(HashMap<Integer, Citta> listaCitta) {
+    public Mappa(ArrayList<Citta> listaCitta) {
         this.listaCitta = listaCitta;
         this.matricePercorsi = new int[listaCitta.size()][listaCitta.size()];
     }
