@@ -3,6 +3,7 @@ package it.unibs.pa.rovinePerdute;
 
 
 import javax.xml.stream.XMLStreamException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -46,9 +47,26 @@ public class Main {
             System.out.println();
         }
 
+        mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
 
 
+        for ( Citta cit : mappaCartesiana.listaCitta){
 
-        //mappaCartesiana.creaAlbero();
+        }
+
+        /*ArrayList<Citta> percorso = new ArrayList<Citta>(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));*//*
+        System.out.print("Percorso piu corto: ");
+
+        System.out.print( mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));
+        System.out.println(mappaCartesiana.listaCitta.size());
+
+        for ( int j = 0 ; j < mappaCartesiana.listaCitta.size(); j++){
+
+            System.out.println(mappaCartesiana.listaCitta.get(j).getNome());
+
+        }*/
+
+
+        System.out.println(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size()-1)));
     }
 }

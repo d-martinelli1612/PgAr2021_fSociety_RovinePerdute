@@ -80,28 +80,19 @@ public  class Mappa {
 
     public void percorsoCorto ( Citta prov){
         prov.setDist(0);
-        PriorityQueue< Citta> priorityQueue = new PriorityQueue<>();
+        PriorityQueue<Citta> priorityQueue = new PriorityQueue<>();
         priorityQueue.add(prov);
         prov.setVisited(true);
 
         while (!priorityQueue.isEmpty()){
             Citta nodoAttuale =  priorityQueue.poll();
 
-            /*
-            * ABBIAMO UN PROBLEMA GIANTESCO,
-            * NOI ABBIAMO UNA LISTA DI INERI CHE CI STA A INDICARE L' ARCO, QUESTO
-            *  NON VA BENE DOBBIAMO ANDARE A CREARE NELLA CITTA UNA LISTA DI ARCHI
-            * CHE CI PORTA A UTILIZZARE QUESTO FOREACH SUCCESSIOVO
-            *  E LINERO ASSSEGGNATO ANDRA A FINIRE NEL TARGA CITTA ( OVVERO LA CITTA
-            *  DOVE ARRIVA IL NOSTRO ARCO ) SENO NON FUNZIONERA MAI */
-
-
             for ( Archi arco  : nodoAttuale.getCittaCollegate()){
                 Citta c = arco.getCittaArrivo();
                 if ( !c.isVisited()){
                     int newDistance = nodoAttuale.getDist() + arco.getPeso();
                     if ( newDistance < c.getDist()) {
-                        priorityQueue.remove();
+                        priorityQueue.remove(c);
                         c.setDist(newDistance);
                         c.setCittaProvenienza(nodoAttuale);
                         priorityQueue.add(c);
@@ -112,15 +103,15 @@ public  class Mappa {
         }
 
     }
-
+// manca la citta di prvenienza il ciclo non va
 
     public List<Citta> getShortest ( Citta cittaTarget){
-        List<Citta> percorso = new ArrayList<Citta>();
-        for(Citta vertex = cittaTarget; vertex!= null; vertex = vertex.getCittaProvenienza()){
-            percorso.add(vertex);
+        List<Citta> percorso = new ArrayList<>();
+        for(Citta nodoPredecessore = cittaTarget; nodoPredecessore!= null; nodoPredecessore = nodoPredecessore.getCittaProvenienza()){
+            percorso.add(nodoPredecessore);
         }
         Collections.reverse(percorso);
-        return  percorso;
+        return percorso;
     }
 
 

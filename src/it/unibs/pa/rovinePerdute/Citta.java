@@ -1,6 +1,7 @@
 package it.unibs.pa.rovinePerdute;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Citta implements Comparable<Citta>{
 
@@ -9,7 +10,7 @@ public class Citta implements Comparable<Citta>{
     private int altitudine;
     private String nome;
     private int id;
-    private ArrayList<Archi> cittaCollegate ;
+    private List<Archi> cittaCollegate ;
     private Citta cittaProvenienza;
     private int dist;
     private boolean visited;
@@ -74,7 +75,7 @@ public class Citta implements Comparable<Citta>{
         this.id = id;
     }
 
-    public ArrayList<Archi> getCittaCollegate() {
+    public List<Archi> getCittaCollegate() {
         return cittaCollegate;
     }
 
