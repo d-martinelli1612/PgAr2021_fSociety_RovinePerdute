@@ -28,7 +28,7 @@ public  class Mappa {
 
     //Crea la mappa per la squadra che considera solo l'altitudine
     public void percorsoAltitudine(Mappa Sorgente){
-        int altezza;
+        int altezza=0;
         for (int i=0; i < Sorgente.listaCitta.size(); i++){
             int indice =0;
             for (int j=0; j < Sorgente.listaCitta.size(); j++){
@@ -79,6 +79,7 @@ public  class Mappa {
     }
 
     public void percorsoCorto ( Citta prov){
+
         prov.setDist(0);
         PriorityQueue<Citta> priorityQueue = new PriorityQueue<>();
         priorityQueue.add(prov);
@@ -99,6 +100,7 @@ public  class Mappa {
                         c.setCittaProvenienza(nodoAttuale);
                         priorityQueue.add(c);
                     }
+
                 }
             }
                 nodoAttuale.setVisited(true);

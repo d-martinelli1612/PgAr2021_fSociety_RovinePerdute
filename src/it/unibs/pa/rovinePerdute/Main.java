@@ -31,7 +31,7 @@ public class Main {
         //Trova percorso distanza planare
         mappaCartesiana.percorsoPlanare(mappaSorgente);
 
-        /*//STAMPA
+        //STAMPA
         for (int i=0; i<mappaAltitudine.listaCitta.size(); i++){
             for (int j=0; j<mappaAltitudine.listaCitta.size(); j++){
                 System.out.print(String.format("|%5d|", mappaAltitudine.matricePercorsi[i][j]));
@@ -46,12 +46,39 @@ public class Main {
                 System.out.print(String.format("|%5d|", mappaCartesiana.matricePercorsi[i][j]));
             }
             System.out.println();
-        }*/
+        }
+
+
+
 
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
+        List<Citta> citta = mappaCartesiana.getShortest(listaCitta.get(listaCitta.size()-1));
+        System.out.println("Percorso: ");
+        System.out.println();
+        System.out.println();
+        int i =0;
+        for( Citta cit : citta){
+            System.out.println(cit.getNome() + i);
+            i++;
+        }
+
+         mappaAltitudine.percorsoCorto(mappaAltitudine.listaCitta.get(0));
+        System.out.println("\n\n");
+        List<Citta> cit = mappaAltitudine.getShortest(listaCitta.get(listaCitta.size()-1));
+        System.out.println("Percorso: altezza");
+          i=0;
+        for( Citta citta1 : citta){
+            System.out.println(citta1.getNome() + " " +i);
+            i++;
+        }
+    }
+}
 
 
-        /*ArrayList<Citta> percorso = new ArrayList<Citta>(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));*//*
+
+
+
+/*ArrayList<Citta> percorso = new ArrayList<Citta>(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));*//*
         System.out.print("Percorso piu corto: ");
 
         System.out.print( mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));
@@ -62,11 +89,3 @@ public class Main {
             System.out.println(mappaCartesiana.listaCitta.get(j).getNome());
 
         }*/
-
-        List<Citta> citta = mappaCartesiana.getShortest(listaCitta.get(listaCitta.size()-1));
-        System.out.println("Percorso:");
-        for( Citta cit : citta){
-            System.out.println(cit.getNome());
-        }
-    }
-}
