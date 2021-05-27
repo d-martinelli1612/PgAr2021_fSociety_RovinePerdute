@@ -50,10 +50,6 @@ public class Main {
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
 
 
-        for ( Citta cit : mappaCartesiana.listaCitta){
-
-        }
-
         /*ArrayList<Citta> percorso = new ArrayList<Citta>(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));*//*
         System.out.print("Percorso piu corto: ");
 

@@ -121,7 +121,8 @@ public  class Mappa {
         ArrayList <Nodo> nodiVisitati = new ArrayList<Nodo>();
         Nodo nodo = new Nodo();
 
-        *//**Inizializza la lista dei nodi da visitare*//*
+        *//**Inizializza la lista dei nodi da visitare*/
+        /*
         //Imposta il nodo di partenza
         nodiDaVisitare.get(0).setIdNodo(idNodoPartenza);
         nodiDaVisitare.get(0).setDistanza(0);
