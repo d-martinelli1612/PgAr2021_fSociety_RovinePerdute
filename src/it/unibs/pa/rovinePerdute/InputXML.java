@@ -68,7 +68,7 @@ public class InputXML {
                             }
                         }
                     }
-                    /*Legge le destinazioni che si possono raggiungere da una citta'*/
+                    //Legge le destinazioni che si possono raggiungere da una citta'
                     else if (xmlr.getLocalName().equals("link")) {
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("to")){
