@@ -13,9 +13,7 @@ public class Archi {
         this.name = name;
     }
 
-    public Archi(int idCittaArrivo) {
-        Citta citta = new Citta();
-        citta.setId(idCittaArrivo);
+    public Archi() {
     }
 
     public int getPeso() {

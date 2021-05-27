@@ -23,6 +23,8 @@ public class InputXML {
         HashMap<Integer, Citta> elenco_citta = new HashMap<>();
 
         Citta cit = null;
+        Citta cittaCollegata = new Citta();
+        Archi arco = new Archi();
         int id, x, y, h, linkTo;
         XMLInputFactory xmlif = null;
         XMLStreamReader xmlr = null;
@@ -68,12 +70,21 @@ public class InputXML {
                             }
                         }
                     }
-                    /*Legge le destinazioni che si possono raggiungere da una citta'*/
+                    //Legge le destinazioni che si possono raggiungere da una citta'
                     else if (xmlr.getLocalName().equals("link")) {
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("to")){
+                                //Conversione della stringa in un intero
                                 linkTo = Integer.parseInt(xmlr.getAttributeValue(i));
-                                Archi arco = new Archi(linkTo);
+
+                                //Imposta linkTo come iD della citta' di arrivo dell'arco
+                                cittaCollegata.setId(linkTo);
+
+                                //Imposta per l'arco la citta' di partenza
+                                arco.setCittaPartenza(cit);
+
+                                //Imposta per l'arco la citta' di arrivo
+                                arco.setCittaArrivo(cittaCollegata);
                                 cit.addLinkTo(arco);
                             }
                         }
