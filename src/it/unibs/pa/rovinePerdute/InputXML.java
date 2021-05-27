@@ -23,8 +23,8 @@ public class InputXML {
         HashMap<Integer, Citta> elenco_citta = new HashMap<>();
 
         Citta cit = null;
-        Citta cittaCollegata = new Citta();
-        Archi arco = new Archi();
+        Citta cittaCollegata = null;
+        Archi arco = null;
         int id, x, y, h, linkTo;
         XMLInputFactory xmlif = null;
         XMLStreamReader xmlr = null;
@@ -43,6 +43,7 @@ public class InputXML {
                 case XMLStreamConstants.START_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
                         cit = new Citta();
+
                         //Legge gli attributi della citta'
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("name")) {
@@ -74,6 +75,9 @@ public class InputXML {
                     else if (xmlr.getLocalName().equals("link")) {
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("to")){
+                                cittaCollegata = new Citta();
+                                arco = new Archi();
+
                                 //Conversione della stringa in un intero
                                 linkTo = Integer.parseInt(xmlr.getAttributeValue(i));
 
@@ -85,7 +89,7 @@ public class InputXML {
 
                                 //Imposta per l'arco la citta' di arrivo
                                 arco.setCittaArrivo(cittaCollegata);
-                                cit.addLinkTo(arco);
+                                cit.getCittaCollegate().add(arco);
                             }
                         }
                     }

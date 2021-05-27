@@ -9,7 +9,7 @@ public class Citta implements Comparable<Citta>{
     private int altitudine;
     private String nome;
     private int id;
-    private ArrayList<Archi> cittaCollegate;
+    private ArrayList<Archi> cittaCollegate ;
     private Citta cittaProvenienza;
     private int dist;
     private boolean visited;
@@ -20,7 +20,7 @@ public class Citta implements Comparable<Citta>{
         this.altitudine = altitudine;
         this.nome = nome;
         this.id = id;
-        this.cittaCollegate =  new ArrayList<>();
+        this.cittaCollegate = new ArrayList<>();
 
     }
 
@@ -30,7 +30,8 @@ public class Citta implements Comparable<Citta>{
     }
 
     public Citta() {
-        this.dist = Integer.MAX_VALUE;
+        this.dist =  Integer.MAX_VALUE;
+        this.cittaCollegate =  new ArrayList<>();
     }
 
     public int getCoordinataX() {
