@@ -9,15 +9,10 @@ public class Citta implements Comparable<Citta>{
     private int altitudine;
     private String nome;
     private int id;
-    private ArrayList<Integer> linkTo ;
-
-    // AGGIUNTI CON LALGORITMO
+    private ArrayList<Archi> cittaCollegate;
     private Citta cittaProvenienza;
-    private int dist= /*sposta nel costuttore*/Integer.MAX_VALUE;
-    private boolean visited ;
-
-
-
+    private int dist;
+    private boolean visited;
 
     public Citta(int coordinataX, int coordinataY, int altitudine, String nome, int id) {
         this.coordinataX = coordinataX;
@@ -25,16 +20,17 @@ public class Citta implements Comparable<Citta>{
         this.altitudine = altitudine;
         this.nome = nome;
         this.id = id;
-        this.linkTo =  new ArrayList<>();
+        this.cittaCollegate =  new ArrayList<>();
 
     }
 
     public Citta(String nome ) {
         this.nome = nome;
-        this.linkTo =  new ArrayList<>();
+        this.cittaCollegate =  new ArrayList<>();
     }
 
     public Citta() {
+        this.dist = Integer.MAX_VALUE;
     }
 
     public int getCoordinataX() {
@@ -77,12 +73,12 @@ public class Citta implements Comparable<Citta>{
         this.id = id;
     }
 
-    public ArrayList<Integer> getLinkTo() {
-        return linkTo;
+    public ArrayList<Archi> getCittaCollegate() {
+        return cittaCollegate;
     }
 
-    public void setLinkTo(ArrayList<Integer> linkTo) {
-        this.linkTo = linkTo;
+    public void setCittaCollegate(ArrayList<Archi> cittaCollegate) {
+        this.cittaCollegate = cittaCollegate;
     }
 
     public Citta getCittaProvenienza() {
@@ -109,9 +105,8 @@ public class Citta implements Comparable<Citta>{
         this.visited = visited;
     }
 
-    // prova andreaa
-    public void addLinkTo (Integer intero ){
-        this.linkTo.add(intero);
+    public void addLinkTo (Archi arco){
+        this.cittaCollegate.add(arco);
     }
 
     public void stampaCitta() {
@@ -122,8 +117,8 @@ public class Citta implements Comparable<Citta>{
                 "; altitudine: " + this.getAltitudine() + "; }");
 
         System.out.print("Destinazioni { ");
-        for (int i=0; i<this.linkTo.size(); i++)
-            System.out.print(this.linkTo.get(i) + ";");
+        for (int i = 0; i<this.cittaCollegate.size(); i++)
+            System.out.print(this.cittaCollegate.get(i) + ";");
         System.out.print("}\n");
     }
 

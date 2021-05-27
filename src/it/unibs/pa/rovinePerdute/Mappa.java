@@ -1,6 +1,5 @@
 package it.unibs.pa.rovinePerdute;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.ArrayList;
 
@@ -19,9 +18,9 @@ public  class Mappa {
         //seleziona righe matrice ciascuna corrispondente a una localita'
         for (int i=0; i < this.listaCitta.size(); i++){
             //Controlla quante destinazioni sono raggiungibili partendo dalla localita' selezionata
-            for (int j=0; j < this.listaCitta.get(i).getLinkTo().size(); j++){
+            for (int j = 0; j < this.listaCitta.get(i).getCittaCollegate().size(); j++){
                 //Imposta il percorso come "esistente" all'interno della matricePercorsi
-                this.matricePercorsi[i][this.listaCitta.get(i).getLinkTo().get(j)] = 1;
+                this.matricePercorsi[i][this.listaCitta.get(i).getCittaCollegate().get(j)] = 1;
             }
         }
     }
@@ -88,8 +87,8 @@ public  class Mappa {
             *  DOVE ARRIVA IL NOSTRO ARCO ) SENO NON FUNZIONERA MAI */
 
 
-            for ( Archi arco  : nodoAttuale.getLinkTo()){
-                Citta c = arco.getTargaCitta();
+            for ( Archi arco  : nodoAttuale.getCittaCollegate()){
+                Citta c = arco.getCittaArrivo();
                 if ( !c.isVisited()){
                     int newDistance = nodoAttuale.getDist() + arco.getPeso();
                     if ( newDistance < c.getDist()) {

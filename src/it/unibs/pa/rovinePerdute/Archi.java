@@ -3,18 +3,19 @@ package it.unibs.pa.rovinePerdute;
 public class Archi {
     private int peso;
     private Citta cittaPartenza;
-    private Citta targaCitta;
+    private Citta cittaArrivo;
     private String name;
 
     public Archi(int peso, Citta cittaPartenza, Citta targaCitta, String name) {
         this.peso = peso;
         this.cittaPartenza = cittaPartenza;
-        this.targaCitta = targaCitta;
+        this.cittaArrivo = targaCitta;
         this.name = name;
     }
 
-    public Archi(int peso) {
-        /*this.peso = peso;*/ // questa e la distanza quindi non funzionera mai , dobbiamo metterci il collegamento
+    public Archi(int idCittaArrivo) {
+        Citta citta = new Citta();
+        citta.setId(idCittaArrivo);
     }
 
     public int getPeso() {
@@ -33,12 +34,12 @@ public class Archi {
         this.cittaPartenza = cittaPartenza;
     }
 
-    public Citta getTargaCitta() {
-        return targaCitta;
+    public Citta getCittaArrivo() {
+        return cittaArrivo;
     }
 
-    public void setTargaCitta(Citta targaCitta) {
-        this.targaCitta = targaCitta;
+    public void setCittaArrivo(Citta cittaArrivo) {
+        this.cittaArrivo = cittaArrivo;
     }
 
     public String getName() {

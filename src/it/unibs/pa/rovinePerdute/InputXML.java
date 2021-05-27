@@ -41,7 +41,7 @@ public class InputXML {
                 case XMLStreamConstants.START_ELEMENT:
                     if (xmlr.getLocalName().equals("city")) {
                         cit = new Citta();
-                        /*Legge gli attributi della citta'*/
+                        //Legge gli attributi della citta'
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("name")) {
                                 cit.setNome(xmlr.getAttributeValue(i));
@@ -73,8 +73,8 @@ public class InputXML {
                         for (int i=0; i<xmlr.getAttributeCount(); i++){
                             if (xmlr.getAttributeLocalName(i).equals("to")){
                                 linkTo = Integer.parseInt(xmlr.getAttributeValue(i));
-                               /* Archi arco = new Archi(linkTo);*/
-                                cit.addLinkTo(linkTo);
+                                Archi arco = new Archi(linkTo);
+                                cit.addLinkTo(arco);
                             }
                         }
                     }
