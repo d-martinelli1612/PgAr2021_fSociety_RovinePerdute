@@ -12,10 +12,11 @@ import java.util.List;
 public class Main {
     public static void main(String args[]) throws XMLStreamException {
 
-        HashMap<Integer, Citta> listaCitta = InputXML.leggiInputCitta();
-        Mappa mappaSorgente = new Mappa(listaCitta);
-        Mappa mappaAltitudine = new Mappa(listaCitta);
-        Mappa mappaCartesiana = new Mappa(listaCitta);
+        HashMap<Integer, Citta> listaCittaCartesiana = InputXML.leggiInputCitta();
+        HashMap<Integer, Citta> listaCittaAltitudine = InputXML.leggiInputCitta();
+        Mappa mappaSorgente = new Mappa(listaCittaCartesiana);
+        Mappa mappaAltitudine = new Mappa(listaCittaAltitudine);
+        Mappa mappaCartesiana = new Mappa(listaCittaCartesiana);
 
         //Stampa lista citta
         /*for (int i=0; i<listaCitta.size(); i++){
@@ -28,9 +29,6 @@ public class Main {
         //Trova percorso altitudine
         mappaAltitudine.percorsoAltitudine(mappaSorgente);
 
-        //Trova percorso distanza planare
-        mappaCartesiana.percorsoPlanare(mappaSorgente);
-
         //STAMPA
         System.out.println("Mappa altitudine");
         for (int i=0; i<mappaAltitudine.listaCitta.size(); i++){
@@ -39,6 +37,17 @@ public class Main {
             }
             System.out.println();
         }
+
+        mappaAltitudine.percorsoCorto(mappaAltitudine.listaCitta.get(0));
+        List<Citta> cit = mappaAltitudine.getShortest(listaCittaAltitudine.get(listaCittaAltitudine.size()-1));
+        System.out.println("\n\nPercorso altezza:");
+        for(int i=0; i < cit.size(); i++){
+            System.out.println(cit.get(i).getNome() + " " + i);
+        }
+
+
+        //Trova percorso distanza planare
+        mappaCartesiana.percorsoPlanare(mappaSorgente);
 
         System.out.println("\nMappa cartesiana");
 
@@ -49,15 +58,8 @@ public class Main {
             System.out.println();
         }
 
-        mappaAltitudine.percorsoCorto(mappaAltitudine.listaCitta.get(0));
-        List<Citta> cit = mappaAltitudine.getShortest(listaCitta.get(listaCitta.size()-1));
-        System.out.println("\n\nPercorso altezza:");
-        for(int i=0; i < cit.size(); i++){
-            System.out.println(cit.get(i).getNome() + " " + i);
-        }
-
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
-        List<Citta> citta = mappaCartesiana.getShortest(listaCitta.get(listaCitta.size()-1));
+        List<Citta> citta = mappaCartesiana.getShortest(listaCittaCartesiana.get(listaCittaCartesiana.size()-1));
         System.out.println("\n\nPercorso cartesiano:");
         for(int i=0; i < citta.size(); i++){
             System.out.println(citta.get(i).getNome() + " " + i);

@@ -84,14 +84,7 @@ public  class Mappa {
         PriorityQueue<Citta> priorityQueue = new PriorityQueue<>();
         priorityQueue.add(prov);
         prov.setVisited(true);
-        //A causa dei riferimenti comuni si verificavano situazioni errate, questo potrebbe risolvere
-        //HashMap<Integer, Citta> copiaListaCitta = new HashMap<>();
         int idCercato;
-
-        /*for (int i=1; i < listaCitta.size(); i++){
-            listaCitta.get(i).setVisited(false);
-            listaCitta.get(i).setDist(Integer.MAX_VALUE);
-        }*/
 
         while (!priorityQueue.isEmpty()){
             Citta nodoAttuale =  priorityQueue.poll();
