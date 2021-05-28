@@ -39,12 +39,6 @@ public  class Mappa {
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(altezza);
                     indice++;
                 }
-                /*else if (i == j){
-                    this.matricePercorsi[i][j] = 0;
-                }
-                else{
-                    this.matricePercorsi[i][j] = -1;
-                }*/
             }
         }
     }
@@ -68,12 +62,6 @@ public  class Mappa {
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(distanza);
                     indice++;
                 }
-                /*else if (i == j){
-                    this.matricePercorsi[i][j] = 0;
-                }
-                else{
-                    this.matricePercorsi[i][j]= -1;
-                }*/
             }
         }
     }
@@ -106,7 +94,6 @@ public  class Mappa {
         }
 
     }
-// manca la citta di prvenienza il ciclo non va
 
     public List<Citta> getShortest ( Citta cittaTarget){
         List<Citta> percorso = new ArrayList<>();
@@ -117,7 +104,7 @@ public  class Mappa {
         return percorso;
     }
 
-    public static Citta trovaCitta(int idCitta, HashMap<Integer, Citta> listaCitta){
+    private static Citta trovaCitta(int idCitta, HashMap<Integer, Citta> listaCitta){
         //Restituisce la citta' presente a quel determinato indice della listaCitta
         return listaCitta.get(idCitta);
     }

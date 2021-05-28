@@ -14,14 +14,10 @@ public class Main {
 
         HashMap<Integer, Citta> listaCittaCartesiana = InputXML.leggiInputCitta();
         HashMap<Integer, Citta> listaCittaAltitudine = InputXML.leggiInputCitta();
+        //HashMap<Integer, Citta> listaCittaAltitudine = new HashMap<>();
         Mappa mappaSorgente = new Mappa(listaCittaCartesiana);
         Mappa mappaAltitudine = new Mappa(listaCittaAltitudine);
         Mappa mappaCartesiana = new Mappa(listaCittaCartesiana);
-
-        //Stampa lista citta
-        /*for (int i=0; i<listaCitta.size(); i++){
-            listaCitta.get(i).stampaCitta();
-        }*/
 
         //Crea la mappaSorgente, riportante i percorsi esistenti
         mappaSorgente.matriceDistanze();
@@ -69,15 +65,3 @@ public class Main {
 
     }
 }
-
-/*ArrayList<Citta> percorso = new ArrayList<Citta>(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));*//*
-        System.out.print("Percorso piu corto: ");
-
-        System.out.print( mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));
-        System.out.println(mappaCartesiana.listaCitta.size());
-
-        for ( int j = 0 ; j < mappaCartesiana.listaCitta.size(); j++){
-
-            System.out.println(mappaCartesiana.listaCitta.get(j).getNome());
-
-        }*/
