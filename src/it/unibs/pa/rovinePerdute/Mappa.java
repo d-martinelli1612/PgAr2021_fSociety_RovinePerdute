@@ -78,17 +78,23 @@ public  class Mappa {
         }
     }
 
-    public void percorsoCorto ( Citta prov){
+    public void percorsoCorto (Citta prov){
 
         prov.setDist(0);
         PriorityQueue<Citta> priorityQueue = new PriorityQueue<>();
         priorityQueue.add(prov);
         prov.setVisited(true);
+        //A causa dei riferimenti comuni si verificavano situazioni errate, questo potrebbe risolvere
+        //HashMap<Integer, Citta> copiaListaCitta = new HashMap<>();
         int idCercato;
+
+        /*for (int i=1; i < listaCitta.size(); i++){
+            listaCitta.get(i).setVisited(false);
+            listaCitta.get(i).setDist(Integer.MAX_VALUE);
+        }*/
 
         while (!priorityQueue.isEmpty()){
             Citta nodoAttuale =  priorityQueue.poll();
-            //trovaCitta(priorityQueue.size()-1,this.listaCitta );
             for ( Archi arco  : nodoAttuale.getCittaCollegate()){
                 idCercato = arco.getCittaArrivo().getId();
                 Citta c = trovaCitta(idCercato, this.listaCitta);
@@ -123,61 +129,4 @@ public  class Mappa {
         return listaCitta.get(idCitta);
     }
 
-   /* public void creaAlbero(int idNodoPartenza, int idNodoArrivo) {
-        ArrayList <Nodo> nodiDaVisitare = new ArrayList<Nodo>();
-        ArrayList <Nodo> nodiVisitati = new ArrayList<Nodo>();
-        Nodo nodo = new Nodo();
-
-        *//**Inizializza la lista dei nodi da visitare*/
-        /*
-        //Imposta il nodo di partenza
-        nodiDaVisitare.get(0).setIdNodo(idNodoPartenza);
-        nodiDaVisitare.get(0).setDistanza(0);
-        nodiDaVisitare.get(0).setPartenza(true);
-
-        nodo.setIdNodoProvenienza(-1);
-        nodo.setDistanza(0);
-        nodo.setPartenza(false);
-        for (int i=0; i < this.listaCitta.size(); i++){
-            nodo.setIdNodo(this.listaCitta.get(i).getId());
-            nodiDaVisitare.add(nodo);
-        }
-
-        int idNodoAttuale = idNodoPartenza;
-        int nodoCollegato, indiceNodo, distanza;
-
-        //Se viene trovato il percorso per il nodo di arrivo il ciclo viene fermato
-        while (idNodoAttuale != idNodoArrivo){
-            //Controlla quanti nodi sono collegati a quello attualmente in analisi
-            for (int i=0; i < this.listaCitta.get(idNodoAttuale).getLinkTo().size(); i++){
-                nodoCollegato = this.listaCitta.get(idNodoAttuale).getLinkTo().get(i);
-
-                //Verifica che il nodo debba essere ancora controllato, altrimenti prosegue
-                if (nodiDaVisitare.contains(nodoCollegato)){
-                    indiceNodo = trovaIndiceNodo(nodoCollegato, nodiDaVisitare);
-
-                    //Se la distanza non e' ancora stata impostata viene messa quella indicata nella tabella
-                    if (nodiDaVisitare.get(indiceNodo).getDistanza() == 0){
-                        //imposta la distanza del nodo dall'origine
-                        distanza = this.matricePercorsi[idNodoAttuale][nodoCollegato];
-                        nodiDaVisitare.get(indiceNodo).setDistanza(distanza);
-                    }
-                    else *//*if ()*/
-    /*{
-
-                    }
-                }
-            }
-        }
-    }
-
-    //Restituisce l'indice del nodo cercato tra quelli della lista
-    private static int trovaIndiceNodo(int idNodoCercato, ArrayList <Nodo> nodiDaVisitare){
-        for (int i=0; i < nodiDaVisitare.size(); i++){
-            if (idNodoCercato == nodiDaVisitare.get(i).getIdNodo())
-                return i;
-        }
-        //Evento che non dovrebbe mai verificarsi
-        return 0;
-    }*/
 }

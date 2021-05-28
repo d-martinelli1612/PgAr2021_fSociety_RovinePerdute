@@ -32,6 +32,7 @@ public class Main {
         mappaCartesiana.percorsoPlanare(mappaSorgente);
 
         //STAMPA
+        System.out.println("Mappa altitudine");
         for (int i=0; i<mappaAltitudine.listaCitta.size(); i++){
             for (int j=0; j<mappaAltitudine.listaCitta.size(); j++){
                 System.out.print(String.format("|%5d|", mappaAltitudine.matricePercorsi[i][j]));
@@ -39,7 +40,7 @@ public class Main {
             System.out.println();
         }
 
-        System.out.println();
+        System.out.println("\nMappa cartesiana");
 
         for (int i=0; i<mappaCartesiana.listaCitta.size(); i++){
             for (int j=0; j<mappaCartesiana.listaCitta.size(); j++){
@@ -48,35 +49,21 @@ public class Main {
             System.out.println();
         }
 
-
-
+        mappaAltitudine.percorsoCorto(mappaAltitudine.listaCitta.get(0));
+        List<Citta> cit = mappaAltitudine.getShortest(listaCitta.get(listaCitta.size()-1));
+        System.out.println("\n\nPercorso altezza:");
+        for(int i=0; i < cit.size(); i++){
+            System.out.println(cit.get(i).getNome() + " " + i);
+        }
 
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
         List<Citta> citta = mappaCartesiana.getShortest(listaCitta.get(listaCitta.size()-1));
-        System.out.println("Percorso: ");
-        System.out.println();
-        System.out.println();
-        int i =0;
-        for( Citta cit : citta){
-            System.out.println(cit.getNome() + i);
-            i++;
-        }
-
-         mappaAltitudine.percorsoCorto(mappaAltitudine.listaCitta.get(0));
-        System.out.println("\n\n");
-        List<Citta> cit = mappaAltitudine.getShortest(listaCitta.get(listaCitta.size()-1));
-        System.out.println("Percorso: altezza");
-          i=0;
-        for( Citta citta1 : citta){
-            System.out.println(citta1.getNome() + " " +i);
-            i++;
+        System.out.println("\n\nPercorso cartesiano:");
+        for(int i=0; i < citta.size(); i++){
+            System.out.println(citta.get(i).getNome() + " " + i);
         }
     }
 }
-
-
-
-
 
 /*ArrayList<Citta> percorso = new ArrayList<Citta>(mappaCartesiana.getShortest(listaCitta.get(listaCitta.size())));*//*
         System.out.print("Percorso piu corto: ");
