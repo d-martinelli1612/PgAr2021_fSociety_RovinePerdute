@@ -39,12 +39,12 @@ public  class Mappa {
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(altezza);
                     indice++;
                 }
-                else if (i == j){
+                /*else if (i == j){
                     this.matricePercorsi[i][j] = 0;
                 }
                 else{
                     this.matricePercorsi[i][j] = -1;
-                }
+                }*/
             }
         }
     }
@@ -68,12 +68,12 @@ public  class Mappa {
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(distanza);
                     indice++;
                 }
-                else if (i == j){
+                /*else if (i == j){
                     this.matricePercorsi[i][j] = 0;
                 }
                 else{
                     this.matricePercorsi[i][j]= -1;
-                }
+                }*/
             }
         }
     }

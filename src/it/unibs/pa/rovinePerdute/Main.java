@@ -60,9 +60,13 @@ public class Main {
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
         List<Citta> citta = mappaCartesiana.getShortest(listaCittaCartesiana.get(listaCittaCartesiana.size()-1));
         System.out.println("\n\nPercorso cartesiano:");
-        for(int i=0; i < citta.size(); i++){
-            System.out.println(citta.get(i).getNome() + " " + i);
+         int i =0;
+        for ( Citta cittaCartesiana : citta){
+
+            System.out.println(cittaCartesiana.getNome() + " " + i);
+            i++;
         }
+
     }
 }
 
