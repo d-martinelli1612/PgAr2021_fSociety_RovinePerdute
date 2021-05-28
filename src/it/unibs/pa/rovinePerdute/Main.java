@@ -30,13 +30,13 @@ public class Main {
         mappaAltitudine.percorsoAltitudine(mappaSorgente);
 
         //STAMPA
-        System.out.println("Mappa altitudine");
+        /*System.out.println("Mappa altitudine");
         for (int i=0; i<mappaAltitudine.listaCitta.size(); i++){
             for (int j=0; j<mappaAltitudine.listaCitta.size(); j++){
                 System.out.print(String.format("|%5d|", mappaAltitudine.matricePercorsi[i][j]));
             }
             System.out.println();
-        }
+        }*/
 
         mappaAltitudine.percorsoCorto(mappaAltitudine.listaCitta.get(0));
         List<Citta> cit = mappaAltitudine.getShortest(listaCittaAltitudine.get(listaCittaAltitudine.size()-1));
@@ -49,14 +49,13 @@ public class Main {
         //Trova percorso distanza planare
         mappaCartesiana.percorsoPlanare(mappaSorgente);
 
-        System.out.println("\nMappa cartesiana");
-
+        /*System.out.println("\nMappa cartesiana");
         for (int i=0; i<mappaCartesiana.listaCitta.size(); i++){
             for (int j=0; j<mappaCartesiana.listaCitta.size(); j++){
                 System.out.print(String.format("|%5d|", mappaCartesiana.matricePercorsi[i][j]));
             }
             System.out.println();
-        }
+        }*/
 
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
         List<Citta> citta = mappaCartesiana.getShortest(listaCittaCartesiana.get(listaCittaCartesiana.size()-1));

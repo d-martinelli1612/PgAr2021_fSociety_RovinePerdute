@@ -35,7 +35,7 @@ public  class Mappa {
                 if (Sorgente.matricePercorsi[i][j] == 1) {
                      altezza = (Math.abs(Sorgente.listaCitta.get(i).getAltitudine()
                             - Sorgente.listaCitta.get(j).getAltitudine()));
-                    this.matricePercorsi[i][j]= altezza;
+                    //this.matricePercorsi[i][j]= altezza;
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(altezza);
                     indice++;
                 }
@@ -63,7 +63,7 @@ public  class Mappa {
                 if (sorgente.matricePercorsi[i][j] == 1) {
                     distanza = (int) Math.sqrt(Math.pow((indiceX - listaCitta.get(j).getCoordinataX()), 2)
                             + Math.pow((indiceY - listaCitta.get(j).getCoordinataY()), 2));
-                    this.matricePercorsi[i][j]= distanza;
+                    //this.matricePercorsi[i][j]= distanza;
 
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(distanza);
                     indice++;
