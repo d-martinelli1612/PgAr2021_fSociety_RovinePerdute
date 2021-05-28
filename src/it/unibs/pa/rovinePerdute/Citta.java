@@ -1,6 +1,7 @@
 package it.unibs.pa.rovinePerdute;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Citta implements Comparable<Citta>{
@@ -15,19 +16,13 @@ public class Citta implements Comparable<Citta>{
     private int dist;
     private boolean visited;
 
-    public Citta(int coordinataX, int coordinataY, int altitudine, String nome, int id) {
+    public Citta(int coordinataX, int coordinataY, int altitudine, String nome, int id, List<Archi> cittaCollegate) {
         this.coordinataX = coordinataX;
         this.coordinataY = coordinataY;
         this.altitudine = altitudine;
         this.nome = nome;
         this.id = id;
-        this.cittaCollegate = new ArrayList<>();
-
-    }
-
-    public Citta(String nome ) {
-        this.nome = nome;
-        this.cittaCollegate =  new ArrayList<>();
+        this.cittaCollegate = cittaCollegate;
     }
 
     public Citta() {
@@ -107,21 +102,21 @@ public class Citta implements Comparable<Citta>{
         this.visited = visited;
     }
 
-    public void stampaCitta() {
-        System.out.println(this.getNome() +
-                " { ID: " + this.getId() +
-                "; coordinata x: " + this.getCoordinataX() +
-                "; coordinata y: " + this.getCoordinataY() +
-                "; altitudine: " + this.getAltitudine() + "; }");
-
-        System.out.print("Destinazioni { ");
-        for (int i = 0; i<this.cittaCollegate.size(); i++)
-            System.out.print(this.cittaCollegate.get(i) + ";");
-        System.out.print("}\n");
-    }
-
-
     public int compareTo(Citta cit){
         return Integer.compare(this.dist, cit.getDist());
+    }
+
+    public static HashMap<Integer, Citta> clonaLista (HashMap<Integer, Citta> listaSorgente){
+        HashMap<Integer, Citta> nuovaLista = new HashMap<>();
+        Citta cittaCopia = null;
+
+        for (int i=0; i < listaSorgente.size(); i++){
+            cittaCopia = new Citta(listaSorgente.get(i).coordinataX, listaSorgente.get(i).coordinataY,
+                    listaSorgente.get(i).altitudine, listaSorgente.get(i).nome, listaSorgente.get(i).id,
+                    listaSorgente.get(i).cittaCollegate);
+            nuovaLista.put(i, cittaCopia);
+        }
+
+        return nuovaLista;
     }
 }

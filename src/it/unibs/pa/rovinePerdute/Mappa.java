@@ -32,10 +32,12 @@ public  class Mappa {
         for (int i=0; i < Sorgente.listaCitta.size(); i++){
             int indice =0;
             for (int j=0; j < Sorgente.listaCitta.size(); j++){
+                //Verifica se esiste un collegamento tra due citta
                 if (Sorgente.matricePercorsi[i][j] == 1) {
-                     altezza = (Math.abs(Sorgente.listaCitta.get(i).getAltitudine()
+                    //Calcola la distanza tra le due citta tra due citta
+                    altezza = (Math.abs(Sorgente.listaCitta.get(i).getAltitudine()
                             - Sorgente.listaCitta.get(j).getAltitudine()));
-                    //this.matricePercorsi[i][j]= altezza;
+                    //Imposta la distanza
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(altezza);
                     indice++;
                 }
@@ -54,11 +56,12 @@ public  class Mappa {
             indiceY = sorgente.listaCitta.get(i).getCoordinataY();
             int indice = 0;
             for (int j=0; j < sorgente.listaCitta.size(); j++){
+                //Verifica se esiste un collegamento tra due citta
                 if (sorgente.matricePercorsi[i][j] == 1) {
+                    //Calcola la distanza tra le due citta tra due citta
                     distanza = (int) Math.sqrt(Math.pow((indiceX - listaCitta.get(j).getCoordinataX()), 2)
                             + Math.pow((indiceY - listaCitta.get(j).getCoordinataY()), 2));
-                    //this.matricePercorsi[i][j]= distanza;
-
+                    //Imposta la distanza
                     this.listaCitta.get(i).getCittaCollegate().get(indice).setPeso(distanza);
                     indice++;
                 }
@@ -66,6 +69,7 @@ public  class Mappa {
         }
     }
 
+    /**Questo metodo trova il percorso migliore per raggiungere le Rovine Perdute*/
     public void percorsoCorto (Citta prov){
 
         prov.setDist(0);
@@ -74,22 +78,38 @@ public  class Mappa {
         prov.setVisited(true);
         int idCercato;
 
+        //Se la lista di elementi da controllare e' vuota il metodo si interrompe
         while (!priorityQueue.isEmpty()){
-            Citta nodoAttuale =  priorityQueue.poll();
+            //Seleziona la citta da analizzare
+            Citta nodoAttuale = priorityQueue.poll();
+
+            //Controlla quanti collegamenti possiede
             for ( Archi arco  : nodoAttuale.getCittaCollegate()){
+
+                //Individua la citta collegata e ne recupera le informazioni
                 idCercato = arco.getCittaArrivo().getId();
                 Citta c = trovaCitta(idCercato, this.listaCitta);
+
+                //Se la citta e' gia' stata controllata viene ignorata
                 if ( !c.isVisited()){
+                    //Calcola la lunghezza del percorso attraverso il nodoAttuale
                     int newDistance = nodoAttuale.getDist() + arco.getPeso();
+                    //Se il percorso attraverso il nodoAttuale risulta essere migliore viene salvato
                     if ( newDistance < c.getDist()) {
+                        //Rimuove la citta per sostituirla
                         priorityQueue.remove(c);
+
+                        //Aggiorna gli attributi
                         c.setDist(newDistance);
                         c.setCittaProvenienza(nodoAttuale);
+
+                        //Salva nuovamente la citta nella lista
                         priorityQueue.add(c);
                     }
 
                 }
             }
+                //Segna che la citta e' stata controllata
                 nodoAttuale.setVisited(true);
         }
 
@@ -97,10 +117,13 @@ public  class Mappa {
 
     public List<Citta> getShortest ( Citta cittaTarget){
         List<Citta> percorso = new ArrayList<>();
+        //Le tappe del percorso vengono salvate in un'apposita lista
         for(Citta nodoPredecessore = cittaTarget; nodoPredecessore!= null; nodoPredecessore = nodoPredecessore.getCittaProvenienza()){
             percorso.add(nodoPredecessore);
         }
+        //La lista viene invertita in modo che la partenza sia a indice 0
         Collections.reverse(percorso);
+        //Restituisce il percorso
         return percorso;
     }
 
