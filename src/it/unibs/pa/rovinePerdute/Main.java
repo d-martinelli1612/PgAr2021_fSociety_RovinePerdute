@@ -24,18 +24,20 @@ public class Main {
 
         //Trova percorso altitudine
         mappaAltitudine.percorsoAltitudine(mappaSorgente);
-
         mappaAltitudine.percorsoCorto(mappaAltitudine.listaCitta.get(0));
-        List<Citta> cit = mappaAltitudine.getShortest(listaCittaAltitudine.get(listaCittaAltitudine.size()-1));
+
+        //Trova percorso distanza planare
+        mappaCartesiana.percorsoPlanare(mappaSorgente);
+        mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
+
+        //Rimuovere alla fine dei test
+        /*List<Citta> cit = mappaAltitudine.getShortest(listaCittaAltitudine.get(listaCittaAltitudine.size()-1));
         System.out.println("\n\nPercorso altezza:");
         for(int i=0; i < cit.size(); i++){
             System.out.println(cit.get(i).getNome() + " " + i);
         }
 
-        //Trova percorso distanza planare
-        mappaCartesiana.percorsoPlanare(mappaSorgente);
-
-        mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
+        //Rimuovere alla fine dei test
         List<Citta> citta = mappaCartesiana.getShortest(listaCittaCartesiana.get(listaCittaCartesiana.size()-1));
         System.out.println("\n\nPercorso cartesiano:");
          int i =0;
@@ -43,7 +45,7 @@ public class Main {
 
             System.out.println(cittaCartesiana.getNome() + " " + i);
             i++;
-        }
+        }*/
 
     }
 }
