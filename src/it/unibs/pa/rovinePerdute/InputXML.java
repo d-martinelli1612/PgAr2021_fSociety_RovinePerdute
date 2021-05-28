@@ -28,7 +28,7 @@ public class InputXML {
         int id, x, y, h, linkTo;
         XMLInputFactory xmlif = null;
         XMLStreamReader xmlr = null;
-        String FileXML = "PgAr_Map_12.xml";
+        String FileXML = "PgAr_Map_200.xml";
 
         try {
             xmlif = XMLInputFactory.newInstance();
