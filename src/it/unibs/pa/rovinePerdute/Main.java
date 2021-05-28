@@ -30,6 +30,10 @@ public class Main {
         mappaCartesiana.percorsoPlanare(mappaSorgente);
         mappaCartesiana.percorsoCorto(mappaCartesiana.listaCitta.get(0));
 
+        List<Citta> percorsoTonathiu = mappaCartesiana.getShortest(listaCittaCartesiana.get(listaCittaCartesiana.size()-1));
+        List<Citta> percorsoMetztli = mappaAltitudine.getShortest(listaCittaAltitudine.get(listaCittaAltitudine.size()-1));
+
+        Output.stampaXML(percorsoTonathiu, percorsoMetztli);
         //Rimuovere alla fine dei test
         /*List<Citta> cit = mappaAltitudine.getShortest(listaCittaAltitudine.get(listaCittaAltitudine.size()-1));
         System.out.println("\n\nPercorso altezza:");
